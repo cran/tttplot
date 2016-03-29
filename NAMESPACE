@@ -1,2 +1,2 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("graphics", "axis", "legend", "lines", "plot")
+importFrom("graphics", "axis", "legend", "lines", "plot", "matplot")

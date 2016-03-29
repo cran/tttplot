@@ -1,8 +1,8 @@
 Package: tttplot
 Type: Package
 Title: Time to Target Plot
-Version: 1.0
-Date: 2016-03-18
+Version: 1.1.1
+Date: 2016-03-29
 Author: Carlos A. Martinez [aut, cre] based on the work of Ribeiro and Rosseti (2015).
 Maintainer: Carlos A. Martinez <amartin@unal.edu.co>
 Description: Implementation of Time to Target plot based on the work 
@@ -12,6 +12,6 @@ Description: Implementation of Time to Target plot based on the work
              target value in smaller computation time than algorithm B.
 License: GPL (>= 2)
 NeedsCompilation: no
-Packaged: 2016-03-20 12:55:42 UTC; CarlMaMr
+Packaged: 2016-03-29 15:51:00 UTC; CarlMaMr
 Repository: CRAN
-Date/Publication: 2016-03-20 16:54:53
+Date/Publication: 2016-03-29 18:59:47

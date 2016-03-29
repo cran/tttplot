@@ -1,9 +1,10 @@
 ### Time-to-Target Plot - version in R
 
-tttPlot <- function(time_value = NULL, tGraph = "TTTPlot", snTheorical = FALSE) {
-      if(is.null(time_value)) return(list("xSortVal" = c(-1), "probTV" = c(-1)));
+tttPlot <- function(timeValue = NULL, tGraph = "TTTPlot", snTheorical = FALSE) {
+      if(is.null(timeValue)) return(list("xSortVal" = c(-1), "probTV" = c(-1)));
+      time_value = timeValue;
       nTV        = length(time_value);
-
+      
     # Sort values
       sorted_time_value = sort(time_value);
 
@@ -79,28 +80,17 @@ tttPlot <- function(time_value = NULL, tGraph = "TTTPlot", snTheorical = FALSE) 
       return(list("xSortVal" = sorted_time_value, "probTV" = probTV));
 }
 
-tttPlotCompare <- function(time_value1 = NULL, time_value2 = NULL, tGraph = "TTTPlot", 
+tttPlotCompare <- function(timeValue1 = NULL, timeValue2 = NULL, tGraph = "TTTPlot", 
                            snTheorical = FALSE, xLab = "Time", yLab = "Accum. Prob.", legendTT = NULL, 
-                           snReturn = TRUE) {
-     if(is.null(time_value1) || is.null(time_value2)) return(list("xSortVal1" = c(-1), "probTV1" = c(-1), "xSortVal2" = c(-1), "probTV2" = c(-1)));
-     tVal1 = tttPlot(time_value1, "None", FALSE);
-     tVal2 = tttPlot(time_value2, "None", FALSE);
-     nVal1 = length(tVal1$xSortVal);
-     nVal2 = length(tVal2$xSortVal);
-
-     if(tVal1$xSortVal[nVal1] > tVal2$xSortVal[nVal2]) {
-        plot(tVal1$xSortVal, tVal1$probTV, col = "black", type="l", lty=4, lwd = 2, xlab=xLab, ylab=yLab);
-        lines(tVal2$xSortVal, tVal2$probTV,col = "black", type="l", lwd = 2);
-     } else {
-        plot(tVal2$xSortVal, tVal2$probTV, col = "black", type="l", lwd = 2, xlab=xLab, ylab=yLab);
-        lines(tVal1$xSortVal, tVal1$probTV,col = "black", type="l", lty=4, lwd = 2);
-     }
-     if(is.null(legendTT)) legendTT = c("Model_1", "Model_2");
-     legend("bottomright", inset=0.05, legendTT, col=c("black", "black"),lty=c(4,1), lwd = c(2,2));
-     axis(side = 1, at = c(1:max(tVal1$xSortVal)))
-
-     if(snReturn) return(list("xSortVal1" = tVal1$xSortVal, "probTV1" = tVal1$probTV, "xSortVal2" = tVal2$xSortVal, "probTV2" = tVal2$probTV));
+                           snReturn = TRUE, posLegend = "topleft") {
+  if(is.null(timeValue1) || is.null(timeValue2)) return(list("xSortVal1" = c(-1), "probTV1" = c(-1), "xSortVal2" = c(-1), "probTV2" = c(-1)));
+  tVal1 = tttPlot(timeValue1, "None", FALSE);
+  tVal2 = tttPlot(timeValue2, "None", FALSE);
+  nVal1 = length(tVal1$xSortVal);
+  nVal2 = length(tVal2$xSortVal);
+  if(is.null(legendTT)) legendTT = c("Model1", "Model2");
+  matplot(cbind(tVal1$xSortVal,tVal2$xSortVal), cbind(tVal1$probTV, tVal2$probTV), pch = 1, type = "l", xlab = xLab, ylab = yLab)
+  legend(posLegend, legendTT, col = c("black", "red"), lty = c(1,2), lwd = c(2,2), bty = 'n', cex = 0.5);
+  
+  if(snReturn) return(list("xSortVal1" = tVal1$xSortVal, "probTV1" = tVal1$probTV, "xSortVal2" = tVal2$xSortVal, "probTV2" = tVal2$probTV));
 }
-
-
-
